@@ -73,16 +73,17 @@ global u0
 global s0
 
 
-nrobots = 5
-thor = 1
-etasize = 5*thor
-n_const = 4*nrobots+11
+#define important parameters
+nrobots = 5 #number of robots
+thor = 1    #discrete time-step for receding horizon
+etasize = 5*thor    #number of discrete time-steps in the future (eta)
+n_const = 4*nrobots+11  
 tau = 10
-nconn = 1
-Str = 30
-fq = 15
-Noise = (10**(5-1.8*math.log10(fq)))*(10**(-6))
-sp = 1.5
+nconn = 1       #number of robots to be in 1-hop comms with
+Str = 30        #parameters of the physical layer comms model
+fq = 15         #parameters of the physical layer comms model
+Noise = (10**(5-1.8*math.log10(fq)))*(10**(-6))     #parameters of the physical layer comms model
+sp = 1.5        #parameters of the physical layer comms model
 absorb = 10**(0.001*((0.011*((fq**2)/(1+fq**2)))+(4.4*((fq**2)/(4100+fq**2)))+(2.75*10**(-5)*fq**2)+0.0003))
 h = 20
 eta_SNR = 10**(24/10)
@@ -96,12 +97,12 @@ prev_in = np.ones((thor,nrobots))
 comm_range = 3
 utminus1 = 0
 delta_t = 0.5
-smin = 0
-smax = 2
+smin = 0        #minimum quad speed in body-axis
+smax = 2        #maximum quad speed in body-axis
 stminus1 = 0
 amin = -1
 amax = 0.5
-dsafe = 0.02
+dsafe = 0.02    #safety distance 
 A = 100
 iterlim = 20
 SNRapp = 1000 # set to this value in previous code
@@ -119,7 +120,7 @@ SNRapp = 1000 # set to this value in previous code
 # In[2]:
 
 
-
+#function to construct paths and waypoints using splines
 def eta_gen(waypoints,r1,c):
 
     global arclength
